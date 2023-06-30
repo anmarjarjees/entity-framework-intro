@@ -1,6 +1,6 @@
 # Repo: entity-framework-intro
 Getting Started with Entity Framework.
-Entity Framework Core is an Object-Relational Mapper that simplifies working with relational databases using strongly-typed .NET objects.
+Entity Framework Core is an Object-Relational Mapper that simplifies working with relational databases using strongly-typed .NET objects. Since .NET7 Microsoft is no more using "Core" so it's not about EF core 7 it's just about EF7. 
 
 Please refer to my PDF files for more details and explanations 
 

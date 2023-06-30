@@ -13,7 +13,6 @@ namespace EFGetStarted.Data
     */
     internal class BloggingContext : DbContext
     {
-
         /*
         This Constructor is needed for initializing Database connection
         */
