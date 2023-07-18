@@ -9,8 +9,18 @@ This repo contains x projects:
 > EFGetStarted => For Getting Started with using EF and SQLite
 
 
-# EFGetStarted
-Using C# Console App to connect a SQLite Database. Refer to my PDF file "Entity Framework Essentials".
+# EFGetStarted Project
+Using C# Console App to connect a SQLite Database which is a database that self-contained in a file. SQlite is an open source cross-platform embedded database technology. Refer to my PDF file "Entity Framework Essentials".
+
+
+# Create the database: 
+The following steps use migrations to create a database. Run the commands: 
+> Add-Migration InitialCreate  
+> Update-Database 
+
+**These two commands do the following:** 
+- The Add-Migration command => scaffolds a migration to create the initial set of tables for the model.  
+- The Update-Database command => creates the database and applies the new migration to it. 
 
 # Credits, References, and Resources:
 - [Entity Framework documentation hub](https://learn.microsoft.com/en-us/ef/)
