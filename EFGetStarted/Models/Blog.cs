@@ -4,23 +4,28 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
+ Creating our Entity classes inside the "Models" folder:
+ */
 namespace EFGetStarted.Models
 {
-    internal class Blog
+    public class Blog
     {
         // Creating the properties:
         // To recap: Type "prop" then TAB then TABBING to change each part:
         /*
         NOTE: we are decorating the property with the attribute [Key] 
         to indicate that it's a primary key
-         */
+        
+        Adding the [Key] here is optional as by convention "Id" keyword means primary key
+        */
 
         [Key]
         public int BlogId { get; set; } // The primary key
 
         /*
         Initializing the URL with "null!"
+        ---------------------------------
         Because in .NET6 and later, all projects enable nullable reference types by default.
         Otherwise, the complier gives warning because it CANNOT see where the non-nullable string name is initialized
         So we explicitly initializing the property as null by assigning the null! to the operator 

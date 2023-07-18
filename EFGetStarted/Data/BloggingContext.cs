@@ -1,5 +1,6 @@
 ﻿using EFGetStarted.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,29 +12,50 @@ namespace EFGetStarted.Data
     /*
     All Data Context extend the "DBContext" 
     */
-    internal class BloggingContext : DbContext
+    public class BloggingContext : DbContext
     {
         /*
-        This Constructor is needed for initializing Database connection
+        This Constructor is needed for specifying the database file path:
+        Link: https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli#create-the-model
         */
         public BloggingContext()
         {
-            /*       var folder = Environment.SpecialFolder.LocalApplicationData;
-                     var path = Environment.GetFolderPath(folder);
-                     DbPath = System.IO.Path.Join(path, "blogging.db");
-            */
-            DbPath = "Blogging.db";
-        }
+            // To understand the concepts start from the bottom:
+            // NOTE: Using the default Windows "localApp":
+            // :C:\Users\YourName\AppData\Local\blogging.db
+
+            // 3. Getting the current project folder  
+            // var folder = Environment.SpecialFolder.LocalApplicationData;
+
+            // 2. Assign the current project folder to the "path" variable 
+            // var path = Environment.GetFolderPath(folder);
+
+            // 1. Using Path.Join() to link the database file "blogging.db"
+            // with the current project path which is inside the variable "path"
+            // DbPath = System.IO.Path.Join(path, "blogging.db");
+
+
+            // Or using the current project folder (directory):
+            // ************************************************
+            // Link: https://learn.microsoft.com/en-us/dotnet/api/system.io.directory.getcurrentdirectory?view=net-7.0
+
+            string path = Directory.GetCurrentDirectory();
+   
+            DbPath = System.IO.Path.Join(path, "blogging.db");
+
+            Console.WriteLine($"Database Path (BloggingContext.cs): {DbPath}");
+        } // Constructor
 
         /*
         > 2 Properties of type DBSet<>
-        > Each DBSet is linked to a table in our database
+        > Each DBSet is linked to (represents) a table in our database
+        which are the Model classes that we created
         */
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
 
         // We used VS IDE quick fix :-) to generate this property:
-        public string DbPath { get; }
+        public string DbPath { get; } = "";
 
         /*
         Finally, overriding the configuration method "OnConfiguring":
@@ -41,9 +63,22 @@ namespace EFGetStarted.Data
         
         using the the method .UseSqlite() 
         Link: https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/connection-strings
-         */
+        */
+
+        // The following configures EF to create a Sqlite database file in the
+        // special "local" folder for your platform.
+        // Link: https://learn.microsoft.com/en-us/ef/core/?WT.mc_id=EducationalEF-c9-niner#the-model
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlite($"Data Source={DbPath}"); ;
+        }
+
+        // Or Using the short version:
+        // ***************************
+        /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlite($"Data Source=Blogging.db");
+            => optionsBuilder.UseSqlite($"Data Source=:{DbPath}");
+        */
 
         // If using SQL Server:
         /*
@@ -69,7 +104,7 @@ namespace EFGetStarted.Data
         /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Data Source=Blogging.db");
+            optionsBuilder.UseSqlite($"Data Source={DbPath}");
         }
         */
     } // class
