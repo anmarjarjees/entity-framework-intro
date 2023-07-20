@@ -10,6 +10,12 @@ using System.Threading.Tasks;
 namespace EFGetStarted.Data
 {
     /*
+    Preparing the Context class for our database:
+    The Context class derived from the "DBContext" class type
+    "DBContext" is the base type for Entity Framework (EF) to query data from a database
+
+    Always by convention => DatabaseName + the word "Context" => DatabaseNameContext
+    Example: BloggingContext
     All Data Context extend the "DBContext" 
     */
     public class BloggingContext : DbContext
@@ -47,9 +53,10 @@ namespace EFGetStarted.Data
         } // Constructor
 
         /*
-        > 2 Properties of type DBSet<>
+        Adding 2 Properties of type DBSet<> which are the Model classes that we created
+        > Each DBSet is build of type "Models" like in our case: Blog.cs and Post.cs
         > Each DBSet is linked to (represents) a table in our database
-        which are the Model classes that we created
+        > DBSet allows us to query inside each table of the corresponding model
         */
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }

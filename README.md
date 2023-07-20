@@ -2,16 +2,14 @@
 Getting Started with Entity Framework.
 Entity Framework Core is an Object-Relational Mapper that simplifies working with relational databases using strongly-typed .NET objects. Since .NET7 Microsoft is no more using "Core" so it's not about EF core 7 it's just about EF7. 
 
-Please refer to my PDF files for more details and explanations 
+Please refer to my PDF files for more details and full explanations 
 
 # Repo Projects Sections
 This repo contains x projects:
 > EFGetStarted => For Getting Started with using EF and SQLite
 
-
 # EFGetStarted Project
 Using C# Console App to connect a SQLite Database which is a database that self-contained in a file. SQlite is an open source cross-platform embedded database technology. Refer to my PDF file "Entity Framework Essentials".
-
 
 # Create the database: 
 The following steps use migrations to create a database. Run the commands: 

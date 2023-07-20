@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace EFGetStarted.Models
 {
+    // A table named "Posts" that belongs to a blog
     public class Post
     {
         public int PostId { get; set; }

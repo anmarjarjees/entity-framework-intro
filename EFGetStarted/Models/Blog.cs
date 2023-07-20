@@ -4,34 +4,44 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 /*
  Creating our Entity classes inside the "Models" folder:
  */
 namespace EFGetStarted.Models
 {
+    // A table named "Blogs" that contains many posts
     public class Blog
     {
         // Creating the properties:
         // To recap: Type "prop" then TAB then TABBING to change each part:
+
         /*
-        NOTE: we are decorating the property with the attribute [Key] 
+        Code First Data Annotations:
+        ****************************
+        We can also use the annotations to provide more information to EF 
+        about the classes and the database to which they map.
+
+        we are decorating the property with the attribute [Key] (with capital "K")
         to indicate that it's a primary key
-        
-        Adding the [Key] here is optional as by convention "Id" keyword means primary key
+
+        Notice that adding the [Key] here is optional as by convention "Id" keyword means primary key
+        Code First will look for a property named "Id", or a combination of class name and "Id", 
+        such as "BlogId". This property will map to a primary key column in the database.
         */
 
         [Key]
-        public int BlogId { get; set; } // The primary key
+        public int BlogId { get; set; } // The primary key => Blog + Id => BlogId
 
         /*
-        Initializing the URL with "null!"
-        ---------------------------------
+        Initializing the property "Name" with "null!"
+        ---------------------------------------------
         Because in .NET6 and later, all projects enable nullable reference types by default.
         Otherwise, the complier gives warning because it CANNOT see where the non-nullable string name is initialized
         So we explicitly initializing the property as null by assigning the null! to the operator 
         */
         
-        // public string Url { get; set; } = null!;
+        // public string Name { get; set; } = null!;
         
         /*
         To use a nullable reference type in our Model, 
@@ -39,7 +49,7 @@ namespace EFGetStarted.Models
         we can use the required attribute:
         */
         [Required]
-        public string? Url { get; set; }
+        public string? Name { get; set; }
         public int Rating { get; set; }
 
         /*

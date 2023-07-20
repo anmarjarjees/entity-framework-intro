@@ -1,13 +1,9 @@
-﻿using EFGetStarted.Data;
-using EFGetStarted.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Reflection.Metadata;
-using System.Xml.Linq;
+﻿Dear Students,
 
-namespace EFGetStarted
-{
-    /*
+This file contains the block of code to be tried inside the file "Program.cs":
+
+
+/*
     IMPORTANT NOTE:
     ***************
     Please refer to my text file "Program.cs.txt" inside the project directory to copy the snippets of code.
@@ -308,6 +304,3 @@ namespace EFGetStarted
 
             Console.WriteLine("End of part5");
             Console.ReadLine();
-        } // Main()
-    } // class
-} // namespace
